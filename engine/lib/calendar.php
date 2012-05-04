@@ -294,8 +294,8 @@ $site_guid = 0, $count = false) {
 	}
 
 	// Add access controls
-	$query .= get_access_sql_suffix("e");
-	$query .= ' and ' . get_access_sql_suffix("m");
+	$query .= get_access_sql_suffix('e');
+	$query .= ' and ' . get_access_sql_suffix('m', null, 'owner_guid', 'entity_guid');
 
 	if (!$count) {
 		// Add order and limit
@@ -414,7 +414,7 @@ $order_by = "", $limit = 10, $offset = 0, $count = false, $site_guid = 0) {
 		$query .= " $w and ";
 	}
 	// Add access controls
-	$query .= get_access_sql_suffix("e");
+	$query .= get_access_sql_suffix('e');
 	if (!$count) {
 		$query .= " order by $order_by limit $offset, $limit"; // Add order and limit
 		return get_data($query, "entity_row_to_elggstar");

@@ -474,7 +474,7 @@ $owner_guids = NULL) {
 	// only supported on values.
 	$binary = ($case_sensitive) ? ' BINARY ' : '';
 
-	$access = get_access_sql_suffix('n_table');
+	$access = get_access_sql_suffix('n_table', null, 'owner_guid', 'entity_guid');
 
 	$return = array (
 		'joins' => array (),
@@ -586,7 +586,7 @@ $owner_guids = NULL) {
 			// for comparing
 			$trimmed_operand = trim(strtolower($operand));
 
-			$access = get_access_sql_suffix("n_table{$i}");
+			$access = get_access_sql_suffix("n_table{$i}", null, 'owner_guid', 'entity_guid');
 			// if the value is an int, don't quote it because str '15' < str '5'
 			// if the operand is IN don't quote it because quoting should be done already.
 			if (is_numeric($pair['value'])) {
@@ -672,7 +672,7 @@ $owner_guids = NULL) {
 				$return['joins'][] = "JOIN {$CONFIG->dbprefix}metastrings msv{$i}
 					on n_table{$i}.value_id = msv{$i}.id";
 
-				$access = get_access_sql_suffix("n_table{$i}");
+				$access = get_access_sql_suffix("n_table{$i}", null, 'owner_guid', 'entity_guid');
 
 				$return['wheres'][] = "(msn{$i}.string = '$name' AND $access)";
 				if (isset($order_by['as']) && $order_by['as'] == 'integer') {

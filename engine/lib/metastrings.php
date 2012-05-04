@@ -528,7 +528,7 @@ function elgg_get_metastring_sql($table, $names = null, $values = null,
 	// only supported on values.
 	$binary = ($case_sensitive) ? ' BINARY ' : '';
 
-	$access = get_access_sql_suffix($table);
+	$access = get_access_sql_suffix($table, null, 'owner_guid', 'entity_guid');
 
 	$return = array (
 		'joins' => array (),
